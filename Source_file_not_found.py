@@ -52,7 +52,7 @@ def copy_png_files(input_file, target_dir):
 
 # 主函数
 if __name__ == "__main__":
-    input_file = 'updated_processed_svn_log.xlsx'
+    input_file = 'local path.xlsx'
     target_dir = os.path.expanduser('~/Desktop/PNG_Files2')
     
     # 拷贝PNG文件
