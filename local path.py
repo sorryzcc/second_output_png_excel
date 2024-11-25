@@ -17,7 +17,7 @@ def update_paths(input_file, output_file, base_path):
 # 主函数
 if __name__ == "__main__":
     input_file = 'log.xlsx'
-    output_file = 'update_path_column.xlsx'
+    output_file = 'local path.xlsx'
     base_path = r'I:\PM_Mainland_Trunk_20230321_r552586\PMGameClient\PMGame'
     
     # 更新路径并保存
