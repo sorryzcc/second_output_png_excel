@@ -53,7 +53,7 @@ def copy_png_files(input_file, target_dir):
 # 主函数
 if __name__ == "__main__":
     input_file = 'local path.xlsx'
-    target_dir = os.path.expanduser('~/Desktop/PNG_Files2')
+    target_dir = os.path.expanduser('~/Desktop/PNG_Files')
     
     # 拷贝PNG文件
     copy_png_files(input_file, target_dir)
