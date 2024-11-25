@@ -1,43 +1,29 @@
 const XLSX = require('xlsx');
 
-// 读取 Excel 文件
-const workbook = XLSX.readFile('processed_svn_log.xlsx');
-const sheetName = workbook.SheetNames[0];
+// 读取Excel文件
+const workbook = XLSX.readFile('picture.xlsx');
+const sheetName = workbook.SheetNames[0]; // 获取第一个工作表的名称
 const worksheet = workbook.Sheets[sheetName];
 
-// 获取 D 列的所有文件名
-const filenames = XLSX.utils.sheet_to_json(worksheet, { header: 1 })
-    .map(row => row[3]) // D 列的索引是 3
-    .filter(name => name); // 过滤掉空值
+// 将工作表转换为JSON数组
+const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-// 定义处理函数
-function processFilename(filename) {
-    // 使用正则表达式匹配 _16位字符.
-    const regex = /_([a-fA-F0-9]{16})\./;
-    const match = filename.match(regex);
+// 定义正则表达式
+const regex = /_[0-9a-fA-F]{16}/;
 
-    if (match) {
-        // 提取匹配到的字符串
-        const matchedString = match[0];
-        // 去掉匹配到的字符串及其前面的 _
-        return filename.replace(matchedString, '.');
-    }
-
-    // 如果没有找到符合条件的字符串，保持原样
-    return filename;
-}
-
-// 处理文件名数组
-const processedFilenames = filenames.map(processFilename);
-
-// 更新工作表中的文件名
-processedFilenames.forEach((newName, index) => {
-    const cellAddress = XLSX.utils.encode_cell({ r: index + 1, c: 3 }); // D 列的索引是 3
-    if (!worksheet[cellAddress]) {
-        worksheet[cellAddress] = {}; // 如果单元格不存在，创建它
-    }
-    worksheet[cellAddress].v = newName;
+// 处理数据，删除匹配的行
+const filteredData = data.filter(row => {
+  if (row[6] && regex.test(row[6])) { // G列的索引是6
+    return false; // 删除该行
+  }
+  return true;
 });
 
-// 写回新的 Excel 文件
-XLSX.writeFile(workbook, 'output.xlsx');
+// 将过滤后的数据转换回工作表
+const newWorksheet = XLSX.utils.aoa_to_sheet(filteredData);
+
+// 更新工作簿
+workbook.Sheets[sheetName] = newWorksheet;
+
+// 写回Excel文件
+XLSX.writeFile(workbook, 'filtered_picture.xlsx');
