@@ -52,8 +52,8 @@ def copy_png_files(input_file, target_dir):
 
 # 主函数
 if __name__ == "__main__":
-    input_file = 'picture.xlsx'
-    target_dir = os.path.expanduser('~/Desktop/PNG_Files')
+    input_file = 'M.xlsx'
+    target_dir = os.path.expanduser('~/Desktop/修改')
     
     # 拷贝PNG文件
     copy_png_files(input_file, target_dir)
