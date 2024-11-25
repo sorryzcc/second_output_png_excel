@@ -48,7 +48,7 @@ def save_to_excel(log_entries, excel_file):
 # 主函数
 if __name__ == "__main__":
     xml_file = 'log.xml'
-    excel_file = 'svn_log.xlsx'
+    excel_file = 'log.xlsx'
     
     # 解析XML文件
     log_entries = parse_svn_log(xml_file)

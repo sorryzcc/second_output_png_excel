@@ -2,8 +2,11 @@
 要在 Excel 中实现从 o列到 D 列的优先级赋值给 M 列，可以使用嵌套的 IF 函数。给我具体的步骤和公式：
 
 
-1双击bat
-2运行python convert_svn_log_to_excel.py 输出svn_log.xlsx'
+1双击bat 生成log.xml;
+2python convert_svn_log_to_excel.py 生成log.xlsx';
+3pytohn updated_processed_svn_log 路径修改为本地路径;
+
+
 3运行process_svn_log.py输出processed_svn_log.xlsx.xlsx
 4手动分列path列...处理表格  
 =IF(T2<>"", T2, IF(S2<>"", S2, IF(R2<>"", R2, IF(Q2<>"", Q2, IF(P2<>"", P2, IF(O2<>"", O2, IF(N2<>"", N2, IF(M2<>"", M2, IF(L2<>"", L2, "")))))))))
